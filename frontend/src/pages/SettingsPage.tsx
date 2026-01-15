@@ -250,19 +250,19 @@ export function SettingsPage() {
                 <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                         <label className="font-bold text-gray-700">Nome da Loja</label>
-                        <input value={isEditing ? editForm.name : user.name} onChange={e => setEditForm({ ...editForm, name: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60" />
+                        <input value={isEditing ? editForm.name : user.name} onChange={e => setEditForm({ ...editForm, name: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60 text-gray-900" />
                     </div>
                     <div className="space-y-2">
                         <label className="font-bold text-gray-700">Telefone / WhatsApp</label>
-                        <input value={isEditing ? editForm.phone : user.phone} onChange={e => setEditForm({ ...editForm, phone: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60" />
+                        <input value={isEditing ? editForm.phone : user.phone} onChange={e => setEditForm({ ...editForm, phone: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60 text-gray-900" />
                     </div>
                     <div className="md:col-span-2 space-y-2">
                         <label className="font-bold text-gray-700">Endereço</label>
-                        <input value={isEditing ? editForm.address : user.address} onChange={e => setEditForm({ ...editForm, address: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60" />
+                        <input value={isEditing ? editForm.address : user.address} onChange={e => setEditForm({ ...editForm, address: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60 text-gray-900" />
                     </div>
                     <div className="md:col-span-2 space-y-2">
                         <label className="font-bold text-gray-700">Descrição / Slogan</label>
-                        <textarea value={isEditing ? editForm.storeDescription : user.storeDescription} onChange={e => setEditForm({ ...editForm, storeDescription: e.target.value })} disabled={!isEditing} rows={2} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60 resize-none" />
+                        <textarea value={isEditing ? editForm.storeDescription : user.storeDescription} onChange={e => setEditForm({ ...editForm, storeDescription: e.target.value })} disabled={!isEditing} rows={2} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60 resize-none text-gray-900" />
                     </div>
 
                     <div className="md:col-span-2 pt-4 border-t border-gray-100">
@@ -274,7 +274,7 @@ export function SettingsPage() {
                                 <label className="font-bold text-gray-700">Link da Loja (Slug)</label>
                                 {hasWebsiteFeature ? (
                                     <div className="flex gap-2">
-                                        <input value={isEditing ? editForm.slug : user.slug} onChange={e => setEditForm({ ...editForm, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') })} disabled={!isEditing} className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60" />
+                                        <input value={isEditing ? editForm.slug : user.slug} onChange={e => setEditForm({ ...editForm, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') })} disabled={!isEditing} className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60 text-gray-900" />
                                         {!isEditing && user.slug && (
                                             <a href={`/${user.slug}`} target="_blank" className="p-3 bg-gray-100 text-gray-600 rounded-2xl hover:bg-gray-200 transition-colors"><ExternalLink className="w-5 h-5" /></a>
                                         )}
