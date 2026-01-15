@@ -14,6 +14,7 @@ export function SettingsPage() {
         email: "...",
         phone: "",
         slug: "",
+        customSalesUrl: "",
         primaryColor: "#000000",
         address: "",
         storeDescription: "",
@@ -25,7 +26,7 @@ export function SettingsPage() {
     });
 
     const [isEditing, setIsEditing] = useState(false);
-    const [editForm, setEditForm] = useState({ name: "", phone: "", slug: "", primaryColor: "#000000", address: "", storeDescription: "" });
+    const [editForm, setEditForm] = useState({ name: "", phone: "", slug: "", customSalesUrl: "", primaryColor: "#000000", address: "", storeDescription: "" });
     const [uploadingLogo, setUploadingLogo] = useState(false);
     const [uploadingCover, setUploadingCover] = useState(false);
     const [hasWebsiteFeature, setHasWebsiteFeature] = useState(false);
@@ -85,6 +86,7 @@ export function SettingsPage() {
                     plan: subInfo,
                     logoUrl: data.logoUrl,
                     slug: data.slug || '',
+                    customSalesUrl: data.customSalesUrl || '',
                     primaryColor: data.primaryColor || '#000000',
                     address: data.address || '',
                     storeDescription: data.storeDescription || '',
@@ -97,6 +99,7 @@ export function SettingsPage() {
                     name: data.storeName || 'Minha Loja',
                     phone: data.phone || '',
                     slug: data.slug || '',
+                    customSalesUrl: data.customSalesUrl || '',
                     primaryColor: data.primaryColor || '#000000',
                     address: data.address || '',
                     storeDescription: data.storeDescription || ''
@@ -127,6 +130,7 @@ export function SettingsPage() {
                     storeName: editForm.name,
                     phone: editForm.phone,
                     slug: editForm.slug,
+                    customSalesUrl: editForm.customSalesUrl,
                     primaryColor: editForm.primaryColor,
                     address: editForm.address,
                     storeDescription: editForm.storeDescription
@@ -282,6 +286,18 @@ export function SettingsPage() {
                                 ) : (
                                     <div className="p-3 bg-gray-50 border border-gray-200 rounded-2xl text-xs text-gray-500 italic">Disponível em planos superiores.</div>
                                 )}
+                            </div>
+
+                            <div className="md:col-span-2 space-y-2">
+                                <label className="font-bold text-gray-700">Link Personalizado do Bot (Opcional)</label>
+                                <p className="text-xs text-gray-500">Se preenchido, o bot enviará este link quando o cliente clicar em "Acessar Site de Vendas". Deixe em branco para usar o padrão.</p>
+                                <input
+                                    value={isEditing ? editForm.customSalesUrl : user.customSalesUrl}
+                                    onChange={e => setEditForm({ ...editForm, customSalesUrl: e.target.value })}
+                                    disabled={!isEditing}
+                                    placeholder="Ex: https://minhaloja.com.br"
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60 text-gray-900"
+                                />
                             </div>
                             <div className="space-y-2">
                                 <label className="font-bold text-gray-700">Cor do Site</label>

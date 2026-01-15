@@ -379,9 +379,10 @@ export class WhatsappService implements OnModuleInit, OnModuleDestroy {
         let to = jid;
         if (!to.includes('@')) to = `${to.replace(/\D/g, '')}@s.whatsapp.net`;
 
-        const clientUrl = this.configService.get('CLIENT_URL') || 'https://zapilar.online';
-        const userSlug = await this.usersService.findById(userId).then(u => u?.slug || '');
-        const siteLink = userSlug ? `${clientUrl}/${userSlug}` : clientUrl;
+        const clientUrl = this.configService.get('CLIENT_URL') || 'https://staysoft.info';
+        const user = await this.usersService.findById(userId);
+        const userSlug = user?.slug || '';
+        const siteLink = user?.customSalesUrl || (userSlug ? `${clientUrl}/${userSlug}` : clientUrl);
 
         const menu = `👋 Olá! Bem-vindo(a) à *${storeName}*
 🖥️ _As melhores peças e computadores estão aqui!_

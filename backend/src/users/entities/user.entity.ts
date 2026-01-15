@@ -68,6 +68,9 @@ export class User {
     @Column({ nullable: true })
     evolutionInstanceName: string;
 
+    @Column({ nullable: true })
+    customSalesUrl: string; // Link personalizado para o site de vendas
+
 
     // @ManyToOne(() => Store, { nullable: true })
     // store: Store;

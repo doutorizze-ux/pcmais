@@ -33,14 +33,16 @@ export class UsersController {
 
     @UseGuards(JwtAuthGuard)
     @Patch('profile')
-    async updateProfile(@Request() req, @Body() body: { storeName?: string; phone?: string; slug?: string; primaryColor?: string; address?: string; storeDescription?: string }) {
+    async updateProfile(@Request() req, @Body() body: { storeName?: string; phone?: string; slug?: string; primaryColor?: string; address?: string; storeDescription?: string; customSalesUrl?: string }) {
         const updates: any = {};
         if (body.storeName !== undefined) updates.storeName = body.storeName;
         if (body.phone !== undefined) updates.phone = body.phone;
         if (body.slug !== undefined) updates.slug = body.slug;
         if (body.primaryColor !== undefined) updates.primaryColor = body.primaryColor;
         if (body.address !== undefined) updates.address = body.address;
+        if (body.address !== undefined) updates.address = body.address;
         if (body.storeDescription !== undefined) updates.storeDescription = body.storeDescription;
+        if (body.customSalesUrl !== undefined) updates.customSalesUrl = body.customSalesUrl;
 
         return this.usersService.updateById(req.user.userId, updates);
     }
