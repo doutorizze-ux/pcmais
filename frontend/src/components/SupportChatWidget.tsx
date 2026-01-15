@@ -213,17 +213,17 @@ export function SupportChatWidget() {
                         className="mb-4 w-[85vw] sm:w-[350px] md:w-[380px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col max-h-[600px]"
                     >
                         {/* Header */}
-                        <div className="bg-[#0B2B26] p-4 flex items-center justify-between border-b border-white/10">
+                        <div className="bg-[#1a1a1a] p-4 flex items-center justify-between border-b border-white/10">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center relative">
                                     <img src="/logo-dark.png" className="w-6 h-6 object-contain invert brightness-0 opacity-80" alt="Bot" />
-                                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-[#0B2B26] rounded-full"></span>
+                                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-orange-500 border-2 border-[#1a1a1a] rounded-full"></span>
                                 </div>
                                 <div>
                                     <h3 className="text-white font-bold text-sm">
                                         {isAuthenticated ? 'Suporte Técnico' : 'Vendas Zapicar'}
                                     </h3>
-                                    <p className="text-xs text-green-400 font-medium">Online Agora</p>
+                                    <p className="text-xs text-orange-400 font-medium">Online Agora</p>
                                 </div>
                             </div>
                             <button
@@ -245,7 +245,7 @@ export function SupportChatWidget() {
                                 >
                                     <div
                                         className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${msg.sender === 'user'
-                                            ? 'bg-[#0B2B26] text-white rounded-br-none'
+                                            ? 'bg-orange-600 text-white rounded-br-none'
                                             : 'bg-white text-gray-800 border border-gray-100 rounded-bl-none'
                                             }`}
                                     >
@@ -291,12 +291,12 @@ export function SupportChatWidget() {
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     placeholder={isAuthenticated ? "Digite sua dúvida técnica..." : "Digite sua dúvida..."}
-                                    className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#0B2B26] transition-colors"
+                                    className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors"
                                 />
                                 <button
                                     type="submit"
                                     disabled={!input.trim()}
-                                    className="p-2.5 bg-[#0B2B26] text-white rounded-xl hover:bg-green-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="p-2.5 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <Send size={18} />
                                 </button>
@@ -310,9 +310,9 @@ export function SupportChatWidget() {
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 bg-[#0B2B26] rounded-full shadow-[0_4px_20px_rgba(11,43,38,0.4)] flex items-center justify-center text-white border-2 border-[#25D366] relative overflow-hidden group"
+                className="w-14 h-14 bg-orange-600 rounded-full shadow-[0_4px_20px_rgba(234,88,12,0.4)] flex items-center justify-center text-white border-2 border-orange-400 relative overflow-hidden group"
             >
-                <div className="absolute inset-0 bg-green-500 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
                 {isOpen ? <X size={24} /> : <HelpCircle size={28} />}
 
                 {!isOpen && (
