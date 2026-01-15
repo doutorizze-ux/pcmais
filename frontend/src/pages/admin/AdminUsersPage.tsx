@@ -77,8 +77,14 @@ export function AdminUsersPage() {
                 subscriptionId: editingUser.planId ? 'MANUAL' : editingUser.subscriptionId
             };
 
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${editingUser.id}`, {
-                method: 'PATCH',
+            const url = editingUser.id
+                ? `${import.meta.env.VITE_API_URL}/users/${editingUser.id}`
+                : `${import.meta.env.VITE_API_URL}/users`;
+
+            const method = editingUser.id ? 'PATCH' : 'POST';
+
+            const response = await fetch(url, {
+                method,
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
@@ -87,11 +93,21 @@ export function AdminUsersPage() {
             });
 
             if (response.ok) {
+                const savedUser = await response.json();
                 setIsModalOpen(false);
                 fetchUsers();
 
-                // If password was changed, offer to notify via WhatsApp
-                if (newPassword && newPassword.trim().length > 0) {
+                // Notification logic for creation or update
+                if (!editingUser.id) {
+                    alert(`Conta criada com sucesso! ID: ${savedUser.id}`);
+                    const phone = editingUser.phone;
+                    if (phone && confirm('Deseja enviar as credenciais para o cliente via WhatsApp?')) {
+                        const targetPhone = phone.replace(/\D/g, '');
+                        const text = encodeURIComponent(`Bem-vindo ao StaySoft! 🚀\n\nSua conta foi criada.\n\nLogin: ${payload.email}\nSenha: ${payload.password}\n\nAcesse: https://staysoft.info/login`);
+                        window.open(`https://wa.me/${targetPhone}?text=${text}`, '_blank');
+                    }
+                } else if (newPassword && newPassword.trim().length > 0) {
+                    // ... existing password update notification logic
                     const phone = editingUser.phone;
                     const confirmMsg = phone
                         ? `Senha atualizada! Deseja enviar a nova senha para o cliente (${phone}) via WhatsApp?`
@@ -99,7 +115,7 @@ export function AdminUsersPage() {
 
                     if (confirm(confirmMsg)) {
                         const targetPhone = phone ? phone.replace(/\D/g, '') : '';
-                        const text = encodeURIComponent(`Olá! Sua senha no ZapCar foi redefinida para: *${newPassword}*\n\nAcesse abuse do seu painel!`);
+                        const text = encodeURIComponent(`Olá! Sua senha no StaySoft foi redefinida para: *${newPassword}*\n\nAcesse através do seu painel!`);
                         window.open(`https://wa.me/${targetPhone}?text=${text}`, '_blank');
                     }
                 } else {
@@ -107,7 +123,8 @@ export function AdminUsersPage() {
                 }
 
             } else {
-                alert('Erro ao atualizar usuário');
+                const err = await response.json();
+                alert(`Erro ao salvar: ${err.message || 'Erro desconhecido'}`);
             }
         } catch (error) {
             alert('Erro na requisição');
@@ -121,6 +138,12 @@ export function AdminUsersPage() {
         <div className="space-y-6">
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold text-gray-900">Gerenciar Usuários</h1>
+                <button
+                    onClick={() => { setEditingUser({}); setIsModalOpen(true); }}
+                    className="bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition-colors flex items-center gap-2"
+                >
+                    <UserIcon className="w-4 h-4" /> Nova Conta
+                </button>
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
@@ -194,7 +217,7 @@ export function AdminUsersPage() {
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
                     <div className="bg-white rounded-2xl w-full max-w-md p-6 overflow-y-auto max-h-[90vh]">
-                        <h2 className="text-xl font-bold mb-4">Editar Usuário</h2>
+                        <h2 className="text-xl font-bold mb-4">{editingUser.id ? 'Editar Usuário' : 'Nova Conta'}</h2>
                         <form onSubmit={handleSave} className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Nome da Loja</label>
@@ -202,17 +225,36 @@ export function AdminUsersPage() {
                                     value={editingUser.storeName || ''}
                                     onChange={e => setEditingUser({ ...editingUser, storeName: e.target.value })}
                                     className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                                    placeholder="Ex: Auto Carros"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Email (Login)</label>
                                 <input
                                     type="email"
-                                    disabled
+                                    required
+                                    disabled={!!editingUser.id}
                                     value={editingUser.email || ''}
-                                    className="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-100 text-gray-500"
+                                    onChange={e => setEditingUser({ ...editingUser, email: e.target.value })}
+                                    className={`w-full border border-gray-300 rounded-lg px-3 py-2 ${editingUser.id ? 'bg-gray-100 text-gray-500' : ''}`}
+                                    placeholder="email@loja.com"
                                 />
                             </div>
+
+                            {!editingUser.id && (
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Senha Inicial</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={editingUser.password || ''}
+                                        onChange={e => setEditingUser({ ...editingUser, password: e.target.value })}
+                                        className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                                        placeholder="Min. 6 caracteres"
+                                    />
+                                </div>
+                            )}
+
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Whatsapp</label>
                                 <input
@@ -251,35 +293,37 @@ export function AdminUsersPage() {
                                 </select>
                             </div>
 
-                            <div className="pt-4 border-t border-gray-100">
-                                <h3 className="text-sm font-bold text-gray-900 mb-3">Segurança e Dados</h3>
-                                <div className="space-y-4">
-                                    <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
-                                        <label className="block text-sm font-medium text-yellow-800 mb-1">Redefinir Senha</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Nova senha..."
-                                            onChange={e => setEditingUser({ ...editingUser, password: e.target.value })}
-                                            className="w-full border border-yellow-300 rounded-lg px-3 py-2 focus:ring-yellow-500 focus:border-yellow-500"
-                                        />
-                                        <p className="text-xs text-yellow-700 mt-1">Ao salvar, você poderá enviar esta senha para o WhatsApp do cliente.</p>
-                                    </div>
+                            {editingUser.id && (
+                                <div className="pt-4 border-t border-gray-100">
+                                    <h3 className="text-sm font-bold text-gray-900 mb-3">Segurança e Dados</h3>
+                                    <div className="space-y-4">
+                                        <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                                            <label className="block text-sm font-medium text-yellow-800 mb-1">Redefinir Senha</label>
+                                            <input
+                                                type="text"
+                                                placeholder="Nova senha..."
+                                                onChange={e => setEditingUser({ ...editingUser, password: e.target.value })}
+                                                className="w-full border border-yellow-300 rounded-lg px-3 py-2 focus:ring-yellow-500 focus:border-yellow-500"
+                                            />
+                                            <p className="text-xs text-yellow-700 mt-1">Ao salvar, você poderá enviar esta senha para o WhatsApp do cliente.</p>
+                                        </div>
 
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">CNPJ / CPF</label>
-                                        <input
-                                            value={editingUser.document || ''}
-                                            onChange={e => setEditingUser({ ...editingUser, document: e.target.value })}
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                                            placeholder="00.000.000/0000-00"
-                                        />
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">CNPJ / CPF</label>
+                                            <input
+                                                value={editingUser.document || ''}
+                                                onChange={e => setEditingUser({ ...editingUser, document: e.target.value })}
+                                                className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                                                placeholder="00.000.000/0000-00"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            )}
 
                             <div className="flex justify-end gap-3 pt-4">
                                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Cancelar</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Salvar Alterações</button>
+                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">{editingUser.id ? 'Salvar Alterações' : 'Criar Conta'}</button>
                             </div>
                         </form>
                     </div>

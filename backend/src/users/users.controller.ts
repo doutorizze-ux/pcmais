@@ -139,6 +139,13 @@ export class UsersController {
         return this.usersService.updateById(id, body);
     }
 
+    @UseGuards(JwtAuthGuard, RolesGuard)
+    @Roles(UserRole.ADMIN)
+    @Post()
+    async create(@Body() body: any) {
+        return this.usersService.create(body.email, body.password, body.storeName, body.role, body.document);
+    }
+
     @Post('force-reset-admin')
     async forceReset() {
         return this.usersService.seedAdmin(true);
