@@ -239,7 +239,7 @@ export function SettingsPage() {
                         </div>
                         <div>
                             <h3 className="text-lg font-bold text-gray-900">Perfil da Loja</h3>
-                            <button onClick={() => coverInputRef.current?.click()} className="text-xs font-bold text-green-600 hover:underline flex items-center gap-1 mt-1">
+                            <button onClick={() => coverInputRef.current?.click()} className="text-xs font-bold text-orange-600 hover:underline flex items-center gap-1 mt-1">
                                 <ImageIcon className="w-3 h-3" /> {uploadingCover ? 'Enviando...' : 'Alterar Capa do Site'}
                             </button>
                             <input type="file" ref={coverInputRef} className="hidden" accept="image/*" onChange={handleCoverUpload} />
@@ -250,19 +250,19 @@ export function SettingsPage() {
                 <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                         <label className="font-bold text-gray-700">Nome da Loja</label>
-                        <input value={isEditing ? editForm.name : user.name} onChange={e => setEditForm({ ...editForm, name: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-green-500/20 disabled:opacity-60" />
+                        <input value={isEditing ? editForm.name : user.name} onChange={e => setEditForm({ ...editForm, name: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60" />
                     </div>
                     <div className="space-y-2">
                         <label className="font-bold text-gray-700">Telefone / WhatsApp</label>
-                        <input value={isEditing ? editForm.phone : user.phone} onChange={e => setEditForm({ ...editForm, phone: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-green-500/20 disabled:opacity-60" />
+                        <input value={isEditing ? editForm.phone : user.phone} onChange={e => setEditForm({ ...editForm, phone: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60" />
                     </div>
                     <div className="md:col-span-2 space-y-2">
                         <label className="font-bold text-gray-700">Endereço</label>
-                        <input value={isEditing ? editForm.address : user.address} onChange={e => setEditForm({ ...editForm, address: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-green-500/20 disabled:opacity-60" />
+                        <input value={isEditing ? editForm.address : user.address} onChange={e => setEditForm({ ...editForm, address: e.target.value })} disabled={!isEditing} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60" />
                     </div>
                     <div className="md:col-span-2 space-y-2">
                         <label className="font-bold text-gray-700">Descrição / Slogan</label>
-                        <textarea value={isEditing ? editForm.storeDescription : user.storeDescription} onChange={e => setEditForm({ ...editForm, storeDescription: e.target.value })} disabled={!isEditing} rows={2} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-green-500/20 disabled:opacity-60 resize-none" />
+                        <textarea value={isEditing ? editForm.storeDescription : user.storeDescription} onChange={e => setEditForm({ ...editForm, storeDescription: e.target.value })} disabled={!isEditing} rows={2} className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60 resize-none" />
                     </div>
 
                     <div className="md:col-span-2 pt-4 border-t border-gray-100">
@@ -274,7 +274,7 @@ export function SettingsPage() {
                                 <label className="font-bold text-gray-700">Link da Loja (Slug)</label>
                                 {hasWebsiteFeature ? (
                                     <div className="flex gap-2">
-                                        <input value={isEditing ? editForm.slug : user.slug} onChange={e => setEditForm({ ...editForm, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') })} disabled={!isEditing} className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-green-500/20 disabled:opacity-60" />
+                                        <input value={isEditing ? editForm.slug : user.slug} onChange={e => setEditForm({ ...editForm, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') })} disabled={!isEditing} className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:ring-2 focus:ring-orange-500/20 disabled:opacity-60" />
                                         {!isEditing && user.slug && (
                                             <a href={`/${user.slug}`} target="_blank" className="p-3 bg-gray-100 text-gray-600 rounded-2xl hover:bg-gray-200 transition-colors"><ExternalLink className="w-5 h-5" /></a>
                                         )}
@@ -312,7 +312,7 @@ export function SettingsPage() {
                         {isEditing ? (
                             <div className="flex gap-3">
                                 <button onClick={() => setIsEditing(false)} className="px-6 py-3 text-gray-500 font-bold hover:bg-gray-100 rounded-2xl transition-colors">Cancelar</button>
-                                <button onClick={handleSaveProfile} disabled={isSaving} className="px-8 py-3 bg-green-600 text-white font-bold rounded-2xl hover:bg-green-700 transition-colors shadow-lg shadow-green-600/20 flex items-center gap-2">
+                                <button onClick={handleSaveProfile} disabled={isSaving} className="px-8 py-3 bg-orange-600 text-white font-bold rounded-2xl hover:bg-orange-700 transition-colors shadow-lg shadow-orange-600/20 flex items-center gap-2">
                                     {isSaving ? 'Salvando...' : <><Save className="w-5 h-5" /> Salvar Alterações</>}
                                 </button>
                             </div>
@@ -328,7 +328,7 @@ export function SettingsPage() {
             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                 <div className="p-6 border-b border-gray-100 flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center"><CreditCard className="w-6 h-6" /></div>
+                        <div className="w-12 h-12 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center"><CreditCard className="w-6 h-6" /></div>
                         <div><h3 className="text-lg font-bold text-gray-900">Plano e Assinatura</h3><p className="text-xs text-gray-500">Gerencie seus pagamentos</p></div>
                     </div>
                     <span className={`px-4 py-1 rounded-full text-xs font-bold ${user.status === 'ACTIVE' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>{user.status === 'ACTIVE' ? 'ATIVO' : 'PENDENTE'}</span>
@@ -336,7 +336,7 @@ export function SettingsPage() {
                 <div className="p-6">
                     <div className="bg-gray-50 border border-gray-100 rounded-2xl p-4 flex items-center justify-between">
                         <div><p className="font-bold text-gray-900">{user.plan}</p><p className="text-xs text-gray-500">Próxima renovação: {user.nextBilling}</p></div>
-                        <button onClick={() => navigate('/dashboard/plans')} className="text-green-600 font-bold text-sm hover:underline">Ver Planos</button>
+                        <button onClick={() => navigate('/dashboard/plans')} className="text-orange-600 font-bold text-sm hover:underline">Ver Planos</button>
                     </div>
                 </div>
             </div>

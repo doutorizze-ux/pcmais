@@ -194,8 +194,7 @@ const ProductModal = ({ product, store, onClose }: { product: Product, store: St
                     <div className="mt-auto">
                         <button
                             onClick={handleWhatsappClick}
-                            className="w-full py-4 text-white rounded-xl font-bold text-lg shadow-xl shadow-green-500/20 hover:brightness-110 transition-all flex items-center justify-center gap-3"
-                            style={{ backgroundColor: '#25D366' }}
+                            className="w-full py-4 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold text-lg shadow-xl shadow-orange-500/20 transition-all flex items-center justify-center gap-3"
                         >
                             <MessageCircle className="w-6 h-6" />
                             Tenho Interesse

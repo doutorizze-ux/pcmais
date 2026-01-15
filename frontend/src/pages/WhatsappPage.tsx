@@ -76,11 +76,11 @@ export function WhatsappPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Status Card */}
                 <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center space-y-6">
-                    <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center">
                         {status === 'CONNECTED' ? (
-                            <CheckCircle className="w-8 h-8 text-green-500" />
+                            <CheckCircle className="w-8 h-8 text-orange-500" />
                         ) : (
-                            <Smartphone className="w-8 h-8 text-blue-600" />
+                            <Smartphone className="w-8 h-8 text-orange-600" />
                         )}
                     </div>
 
@@ -96,8 +96,8 @@ export function WhatsappPage() {
                     </div>
 
                     {status === 'CONNECTED' && (
-                        <div className="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-medium">
-                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                        <div className="flex items-center gap-2 px-4 py-2 bg-orange-50 text-orange-700 rounded-full text-sm font-medium">
+                            <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
                             Online e Operante
                         </div>
                     )}
@@ -124,7 +124,7 @@ export function WhatsappPage() {
                     ) : status === 'CONNECTED' ? (
                         <div className="text-center space-y-4">
                             <div className="w-48 h-48 bg-gray-50 rounded-xl flex items-center justify-center mx-auto">
-                                <CheckCircle className="w-16 h-16 text-green-500 opacity-20" />
+                                <CheckCircle className="w-16 h-16 text-orange-500 opacity-20" />
                             </div>
                             <p className="text-sm text-gray-500">Conexão estabelecida com sucesso.</p>
                         </div>
@@ -146,7 +146,7 @@ export function WhatsappPage() {
 
                             <button
                                 onClick={handleReset}
-                                className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+                                className="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
                             >
                                 <RefreshCw className="w-5 h-5" />
                                 {qrCode ? 'Gerar Novo QR Code' : 'Forçar Geração de QR'}

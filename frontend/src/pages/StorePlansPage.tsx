@@ -137,9 +137,9 @@ function PlanCardGroup({ variants, currentSubscription, onSubscribe }: { variant
     };
 
     return (
-        <div className={`w-full max-w-sm bg-white rounded-2xl p-8 border transition-all ${isCurrent ? (isPending ? 'border-yellow-500 ring-2 ring-yellow-100' : 'border-green-500 ring-2 ring-green-100') : 'border-gray-200 hover:border-gray-300'} shadow-sm flex flex-col relative`}>
+        <div className={`w-full max-w-sm bg-white rounded-2xl p-8 border transition-all ${isCurrent ? (isPending ? 'border-yellow-500 ring-2 ring-yellow-100' : 'border-orange-500 ring-2 ring-orange-100') : 'border-gray-200 hover:border-gray-300'} shadow-sm flex flex-col relative`}>
             {isCurrent && (
-                <div className={`absolute top-0 right-0 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl ${isPending ? 'bg-yellow-500' : 'bg-green-500'}`}>
+                <div className={`absolute top-0 right-0 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl ${isPending ? 'bg-yellow-500' : 'bg-orange-500'}`}>
                     {isPending ? 'AGUARDANDO PAGAMENTO' : 'ATUAL'}
                 </div>
             )}
@@ -174,8 +174,8 @@ function PlanCardGroup({ variants, currentSubscription, onSubscribe }: { variant
             <div className="space-y-4 flex-1 mb-8">
                 {(Array.isArray(activePlan.features) ? activePlan.features : []).map((feature, i) => (
                     <div key={i} className="flex items-start gap-3 text-sm text-gray-600">
-                        <div className="mt-0.5 w-4 h-4 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                            <Check className="w-2.5 h-2.5 text-green-600" />
+                        <div className="mt-0.5 w-4 h-4 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                            <Check className="w-2.5 h-2.5 text-orange-600" />
                         </div>
                         {feature}
                     </div>

@@ -214,7 +214,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                                 required
                                                 value={formData.name}
                                                 onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
+                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none"
                                                 placeholder="Ex: RTX 4060, Processador i5"
                                             />
                                         </div>
@@ -225,7 +225,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                                 required
                                                 value={formData.brand}
                                                 onChange={e => setFormData({ ...formData, brand: e.target.value })}
-                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
+                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none"
                                                 placeholder="Ex: Asus, Intel, Logitech"
                                             />
                                         </div>
@@ -235,7 +235,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                                 type="text"
                                                 value={formData.model}
                                                 onChange={e => setFormData({ ...formData, model: e.target.value })}
-                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
+                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none"
                                                 placeholder="Ex: Dual OC 8GB"
                                             />
                                         </div>
@@ -244,7 +244,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                             <select
                                                 value={formData.category}
                                                 onChange={e => setFormData({ ...formData, category: e.target.value })}
-                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
+                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none"
                                             >
                                                 <option value="Hardware">Hardware</option>
                                                 <option value="Computadores">Computadores</option>
@@ -266,7 +266,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                                 step="0.01"
                                                 value={formData.price}
                                                 onChange={e => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500/20 focus:border-green-500 outline-none font-bold text-green-700"
+                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none font-bold text-orange-600"
                                             />
                                         </div>
                                         <div>
@@ -276,7 +276,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                                 step="0.01"
                                                 value={formData.costPrice}
                                                 onChange={e => setFormData({ ...formData, costPrice: parseFloat(e.target.value) })}
-                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none text-gray-500"
+                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none text-gray-500"
                                             />
                                         </div>
                                         <div>
@@ -286,7 +286,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                                 required
                                                 value={formData.stock}
                                                 onChange={e => setFormData({ ...formData, stock: parseInt(e.target.value) })}
-                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
+                                                className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none"
                                             />
                                         </div>
                                     </div>
@@ -302,7 +302,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                                         value={c}
                                                         checked={formData.condition === c}
                                                         onChange={e => setFormData({ ...formData, condition: e.target.value as any })}
-                                                        className="w-4 h-4 text-blue-600"
+                                                        className="w-4 h-4 text-orange-600"
                                                     />
                                                     <span>{c}</span>
                                                 </label>
@@ -316,7 +316,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                             rows={4}
                                             value={formData.description}
                                             onChange={e => setFormData({ ...formData, description: e.target.value })}
-                                            className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
+                                            className="w-full p-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none"
                                             placeholder="Detalhes técnicos, estado de conservação, garantia..."
                                         />
                                     </div>
@@ -333,7 +333,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                                 ))}
                                                 <label className="aspect-square bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors">
                                                     {uploading ? (
-                                                        <Loader2 className="w-6 h-6 animate-spin text-blue-500" />
+                                                        <Loader2 className="w-6 h-6 animate-spin text-orange-500" />
                                                     ) : (
                                                         <>
                                                             <Upload className="w-6 h-6 text-gray-400 mb-1" />
@@ -369,7 +369,7 @@ export function ProductManagerModal({ isOpen, onClose, onSuccess, initialData }:
                                             <button
                                                 type="submit"
                                                 disabled={loading}
-                                                className="flex items-center gap-2 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-colors disabled:opacity-50"
+                                                className="flex items-center gap-2 px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold transition-colors disabled:opacity-50"
                                             >
                                                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                                                 Salvar Produto
