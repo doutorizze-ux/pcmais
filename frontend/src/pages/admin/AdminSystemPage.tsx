@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Upload, Save, Globe, Palette, Type } from 'lucide-react';
+import { Upload, Save, Globe, Type } from 'lucide-react';
 import { API_URL } from '../../config';
 import { useSystem } from '../../contexts/SystemContext';
 
