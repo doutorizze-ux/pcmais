@@ -43,9 +43,9 @@ export function ServicesPage() {
             // const res = await fetch(`${API_URL}/services`, { ... });
             // For now, let's just mock it or leave emptiness
             setServices([
-                { id: '1', name: 'Formatação', description: 'Formatação completa com backup', price: 120.00, durationMinutes: 120 },
-                { id: '2', name: 'Limpeza Completa', description: 'Limpeza interna e troca de pasta térmica', price: 150.00, durationMinutes: 90 },
-                { id: '3', name: 'Instalação de SSD', description: 'Mão de obra para instalação e clonagem', price: 80.00, durationMinutes: 60 },
+                // { id: '1', name: 'Formatação', description: 'Formatação completa com backup', price: 120.00, durationMinutes: 120 },
+                // { id: '2', name: 'Limpeza Completa', description: 'Limpeza interna e troca de pasta térmica', price: 150.00, durationMinutes: 90 },
+                // { id: '3', name: 'Instalação de SSD', description: 'Mão de obra para instalação e clonagem', price: 80.00, durationMinutes: 60 },
             ]);
         } catch (error) {
             console.error(error);
@@ -155,7 +155,7 @@ export function ServicesPage() {
                                 <input
                                     value={formData.name}
                                     onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                    className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-medium"
+                                    className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-medium text-gray-900 bg-white"
                                     placeholder="Ex: Formatação"
                                     required
                                 />
@@ -166,7 +166,7 @@ export function ServicesPage() {
                                 <textarea
                                     value={formData.description}
                                     onChange={e => setFormData({ ...formData, description: e.target.value })}
-                                    className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all resize-none h-24"
+                                    className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all resize-none h-24 text-gray-900 bg-white"
                                     placeholder="O que está incluso neste serviço?"
                                 />
                             </div>
@@ -181,7 +181,7 @@ export function ServicesPage() {
                                             step="0.01"
                                             value={formData.price}
                                             onChange={e => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-                                            className="w-full pl-9 p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-bold text-gray-900"
+                                            className="w-full pl-9 p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-bold text-gray-900 bg-white"
                                             required
                                         />
                                     </div>
@@ -192,7 +192,7 @@ export function ServicesPage() {
                                         type="number"
                                         value={formData.durationMinutes}
                                         onChange={e => setFormData({ ...formData, durationMinutes: parseInt(e.target.value) })}
-                                        className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all"
+                                        className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all text-gray-900 bg-white"
                                     />
                                 </div>
                             </div>

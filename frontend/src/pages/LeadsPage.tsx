@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { User, MessageSquare, Phone, Calendar, Plus, Trash2, Car, LayoutGrid, List, TrendingUp, DollarSign, Target } from 'lucide-react';
+import { User, MessageSquare, Phone, Calendar, Plus, Trash2, LayoutGrid, List, TrendingUp, DollarSign, Target } from 'lucide-react';
 import { CRMBoard } from '../components/CRMBoard';
 import { API_URL } from '../config';
 import { CreateLeadModal } from '../components/CreateLeadModal';
@@ -136,14 +136,14 @@ export function LeadsPage() {
                     <div className="bg-white p-1 rounded-xl border border-gray-200 flex gap-1">
                         <button
                             onClick={() => setViewMode('crm')}
-                            className={`p-2 rounded-lg transition-all ${viewMode === 'crm' ? 'bg-green-600 text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+                            className={`p-2 rounded-lg transition-all ${viewMode === 'crm' ? 'bg-orange-600 text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
                             title="Visualização em Funil"
                         >
                             <LayoutGrid className="w-4 h-4" />
                         </button>
                         <button
                             onClick={() => setViewMode('list')}
-                            className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-green-600 text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+                            className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-orange-600 text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
                             title="Visualização em Lista"
                         >
                             <List className="w-4 h-4" />
@@ -151,7 +151,7 @@ export function LeadsPage() {
                     </div>
                     <button
                         onClick={() => setIsCreateModalOpen(true)}
-                        className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-all shadow-lg shadow-green-600/20 active:scale-95"
+                        className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/20 active:scale-95"
                     >
                         <Plus className="w-4 h-4" />
                         Novo Lead
@@ -167,7 +167,7 @@ export function LeadsPage() {
                         <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Leads Totais</span>
                     </div>
                     <p className="text-2xl font-black text-gray-900">{stats.totalLeads}</p>
-                    <p className="text-xs text-green-600 font-bold mt-1">+{stats.hotLeads} Hot Leads</p>
+                    <p className="text-xs text-orange-600 font-bold mt-1">+{stats.hotLeads} Hot Leads</p>
                 </div>
 
                 <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
@@ -216,7 +216,7 @@ export function LeadsPage() {
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden text-xs md:text-sm">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left">
-                            <thead className="bg-gray-50 border-b border-gray-200 font-bold text-gray-400 uppercase tracking-widest text-[10px]">
+                            <thead className="bg-[#1a1a1a] border-b border-gray-800 font-bold text-gray-400 uppercase tracking-widest text-[10px]">
                                 <tr>
                                     <th className="px-6 py-4">Nome / Contato</th>
                                     <th className="px-6 py-4">Última Mensagem</th>
@@ -231,7 +231,7 @@ export function LeadsPage() {
                                     <tr key={lead.id} className="hover:bg-gray-50 transition-colors group">
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold shadow-sm">
+                                                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold shadow-sm">
                                                     {getInitial(lead.name)}
                                                 </div>
                                                 <div>
@@ -250,8 +250,8 @@ export function LeadsPage() {
                                         <td className="px-6 py-4">
                                             <div className="flex flex-col gap-1 max-w-xs">
                                                 {lead.interestSubject && (
-                                                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-green-700 bg-green-50 px-2 py-1 rounded w-fit mb-1 border border-green-100 uppercase tracking-tighter">
-                                                        <Car className="w-3 h-3" />
+                                                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-orange-700 bg-orange-50 px-2 py-1 rounded w-fit mb-1 border border-orange-100 uppercase tracking-tighter">
+                                                        <Target className="w-3 h-3" />
                                                         {lead.interestSubject}
                                                     </div>
                                                 )}
@@ -265,14 +265,14 @@ export function LeadsPage() {
                                         </td>
                                         <td className="px-6 py-4">
                                             <select
-                                                className="text-[10px] font-bold text-gray-500 bg-gray-50 border-none rounded-lg py-1 px-2 outline-none cursor-pointer"
+                                                className="text-[10px] font-bold text-gray-700 bg-white border border-gray-200 rounded-lg py-1 px-2 outline-none cursor-pointer focus:border-orange-500"
                                                 value={lead.status || 'NEW'}
                                                 onChange={(e) => handleUpdateStatus(lead.id, e.target.value)}
                                             >
                                                 <option value="NEW">Novo Lead</option>
                                                 <option value="IN_PROGRESS">Negociando</option>
                                                 <option value="WAITING_FINANCIAL">Financeiro</option>
-                                                <option value="WON">Venda Feita</option>
+                                                <option value="WON">Serviço Feito</option>
                                                 <option value="LOST">Perdido</option>
                                             </select>
                                         </td>
@@ -295,7 +295,7 @@ export function LeadsPage() {
                                                         setSelectedLead(lead);
                                                         setIsChatOpen(true);
                                                     }}
-                                                    className="px-4 py-2 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-all shadow-md shadow-green-600/20 text-xs flex items-center gap-2"
+                                                    className="px-4 py-2 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-all shadow-md shadow-orange-600/20 text-xs flex items-center gap-2"
                                                 >
                                                     <MessageSquare className="w-4 h-4" />
                                                     Ver Mensagens
