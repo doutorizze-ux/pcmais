@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { type Lead } from '../pages/LeadsPage';
 import {
     MessageSquare, Phone,
-    Car, Trash2,
+    Target, Trash2,
     CheckCircle2, Clock,
     DollarSign, XCircle
 } from 'lucide-react';
@@ -16,11 +16,11 @@ interface CRMBoardProps {
 }
 
 const COLUMNS = [
-    { id: 'NEW', title: 'Novos Leads', icon: Clock, color: 'bg-blue-500', bgColor: 'bg-blue-50' },
-    { id: 'IN_PROGRESS', title: 'Em Negociação', icon: MessageSquare, color: 'bg-yellow-500', bgColor: 'bg-yellow-50' },
-    { id: 'WAITING_FINANCIAL', title: 'Financiamento', icon: DollarSign, color: 'bg-purple-500', bgColor: 'bg-purple-50' },
-    { id: 'WON', title: 'Venda Feita', icon: CheckCircle2, color: 'bg-green-500', bgColor: 'bg-green-50' },
-    { id: 'LOST', title: 'Perdidos', icon: XCircle, color: 'bg-gray-500', bgColor: 'bg-gray-50' },
+    { id: 'NEW', title: 'Novos Leads', icon: Clock, color: 'bg-orange-500', bgColor: 'bg-orange-50' },
+    { id: 'IN_PROGRESS', title: 'Em Atendimento', icon: MessageSquare, color: 'bg-blue-500', bgColor: 'bg-blue-50' },
+    { id: 'WAITING_FINANCIAL', title: 'Aguardando Peça', icon: DollarSign, color: 'bg-purple-500', bgColor: 'bg-purple-50' }, // Reusing WAITING_FINANCIAL key for now to avoid backend enum changes if strict
+    { id: 'WON', title: 'Concluído', icon: CheckCircle2, color: 'bg-green-500', bgColor: 'bg-green-50' },
+    { id: 'LOST', title: 'Cancelados', icon: XCircle, color: 'bg-gray-500', bgColor: 'bg-gray-50' },
 ];
 
 export function CRMBoard({ leads, onUpdateStatus, onDelete, onViewMessages }: CRMBoardProps) {
@@ -80,8 +80,8 @@ export function CRMBoard({ leads, onUpdateStatus, onDelete, onViewMessages }: CR
                                     </div>
 
                                     {lead.interestSubject && (
-                                        <div className="flex items-center gap-1.5 text-[10px] font-bold text-green-700 bg-green-50 px-2 py-1 rounded-lg w-fit mb-3">
-                                            <Car className="w-3 h-3" />
+                                        <div className="flex items-center gap-1.5 text-[10px] font-bold text-orange-700 bg-orange-50 px-2 py-1 rounded-lg w-fit mb-3">
+                                            <Target className="w-3 h-3" />
                                             {lead.interestSubject}
                                         </div>
                                     )}
@@ -94,7 +94,7 @@ export function CRMBoard({ leads, onUpdateStatus, onDelete, onViewMessages }: CR
                                         <div className="flex gap-2">
                                             <button
                                                 onClick={() => onViewMessages?.(lead)}
-                                                className="p-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors"
+                                                className="p-2 bg-orange-50 text-orange-600 rounded-lg hover:bg-orange-100 transition-colors"
                                                 title="Ver Mensagens"
                                             >
                                                 <MessageSquare className="w-3.5 h-3.5" />

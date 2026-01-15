@@ -270,10 +270,10 @@ export function LeadsPage() {
                                                 onChange={(e) => handleUpdateStatus(lead.id, e.target.value)}
                                             >
                                                 <option value="NEW">Novo Lead</option>
-                                                <option value="IN_PROGRESS">Negociando</option>
-                                                <option value="WAITING_FINANCIAL">Financeiro</option>
-                                                <option value="WON">Serviço Feito</option>
-                                                <option value="LOST">Perdido</option>
+                                                <option value="IN_PROGRESS">Em Atendimento</option>
+                                                <option value="WAITING_FINANCIAL">Aguardando Peça</option>
+                                                <option value="WON">Concluído</option>
+                                                <option value="LOST">Cancelado</option>
                                             </select>
                                         </td>
                                         <td className="px-6 py-4">
