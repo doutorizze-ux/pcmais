@@ -1,5 +1,5 @@
 
-import { Store, CreditCard, LogOut, MessageCircle, Upload, Save, Pencil, Globe, ExternalLink, Image as ImageIcon, Download } from 'lucide-react';
+import { Store, CreditCard, LogOut, Upload, Save, Pencil, Globe, ExternalLink, Image as ImageIcon, Download } from 'lucide-react';
 import { API_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
@@ -27,7 +27,6 @@ export function SettingsPage() {
 
     const [isEditing, setIsEditing] = useState(false);
     const [editForm, setEditForm] = useState({ name: "", phone: "", slug: "", customSalesUrl: "", primaryColor: "#000000", address: "", storeDescription: "" });
-    const [uploadingLogo, setUploadingLogo] = useState(false);
     const [uploadingCover, setUploadingCover] = useState(false);
     const [hasWebsiteFeature, setHasWebsiteFeature] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
@@ -151,7 +150,7 @@ export function SettingsPage() {
 
     const handleLogoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!event.target.files?.[0]) return;
-        setUploadingLogo(true);
+
         const formData = new FormData();
         formData.append('file', event.target.files[0]);
         try {
@@ -164,8 +163,6 @@ export function SettingsPage() {
             if (response.ok) await fetchProfile();
         } catch (error) {
             console.error(error);
-        } finally {
-            setUploadingLogo(false);
         }
     };
 
