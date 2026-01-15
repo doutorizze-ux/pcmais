@@ -38,26 +38,26 @@ export function DashboardHome() {
     }, []);
 
     const stats = [
-        { label: 'Produtos Ativos', value: statsData.activeProducts, icon: Monitor, color: 'text-green-600', bg: 'bg-green-50', trend: 'Atualizado agora' },
-        { label: 'Interações', value: statsData.interactions, icon: MessageSquare, color: 'text-green-600', bg: 'bg-green-50', trend: 'Total estimado' },
-        { label: 'Leads Totais', value: statsData.leads, icon: Users, color: 'text-purple-600', bg: 'bg-purple-50', trend: 'Contatos únicos' },
-        { label: 'Cliques no Bot', value: statsData.interactions, icon: MousePointerClick, color: 'text-orange-600', bg: 'bg-orange-50', trend: '+8%' },
+        { label: 'Produtos Ativos', value: statsData.activeProducts, icon: Monitor, color: 'text-orange-600', bg: 'bg-orange-50', trend: 'Atualizado agora' },
+        { label: 'Interações', value: statsData.interactions, icon: MessageSquare, color: 'text-blue-600', bg: 'bg-blue-50', trend: 'Total estimado' },
+        { label: 'Leads Totais', value: statsData.leads, icon: Users, color: 'text-gray-700', bg: 'bg-gray-100', trend: 'Contatos únicos' },
+        { label: 'Cliques no Bot', value: statsData.interactions, icon: MousePointerClick, color: 'text-orange-500', bg: 'bg-orange-50', trend: '+8%' },
     ];
 
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
-            {/* ... Welcome Section (Unchanged) ... */}
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 text-white shadow-lg overflow-hidden relative">
+            {/* ... Welcome Section ... */}
+            <div className="bg-gradient-to-r from-[#1a1a1a] to-[#2d2d2d] rounded-2xl p-8 text-white shadow-lg overflow-hidden relative border border-white/5">
                 <div className="relative z-10">
                     <h1 className="text-3xl font-bold mb-2">Bem-vindo de volta! 👋</h1>
-                    <p className="text-gray-300 max-w-xl">
+                    <p className="text-gray-400 max-w-xl">
                         Aqui está o que está acontecendo na sua loja hoje. Verifique seus leads recentes e gerencie seu estoque.
                     </p>
                     <div className="mt-6 flex gap-4">
-                        <Link to="/dashboard/products" className="bg-white text-gray-900 px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition flex items-center gap-2">
+                        <Link to="/dashboard/products" className="bg-orange-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-orange-700 transition flex items-center gap-2 shadow-lg shadow-orange-600/20">
                             <Plus className="w-4 h-4" /> Novo Produto
                         </Link>
-                        <Link to="/dashboard/leads" className="bg-white/10 text-white px-4 py-2 rounded-lg font-bold hover:bg-white/20 transition backdrop-blur-sm">
+                        <Link to="/dashboard/leads" className="bg-white/5 text-white px-4 py-2 rounded-lg font-bold hover:bg-white/10 transition backdrop-blur-sm border border-white/10">
                             Ver Mensagens
                         </Link>
                     </div>
@@ -71,19 +71,19 @@ export function DashboardHome() {
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat) => (
-                    <div key={stat.label} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:-translate-y-1">
+                    <div key={stat.label} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:-translate-y-1 group">
                         <div className="flex items-start justify-between">
                             <div>
                                 <p className="text-sm font-medium text-gray-500">{stat.label}</p>
-                                <h3 className="text-3xl font-bold text-gray-900 mt-2">{stat.value}</h3>
+                                <h3 className="text-3xl font-bold text-gray-900 mt-2 group-hover:text-orange-600 transition-colors">{stat.value}</h3>
                             </div>
                             <div className={`p-3 rounded-xl ${stat.bg}`}>
                                 <stat.icon className={`w-6 h-6 ${stat.color}`} />
                             </div>
                         </div>
                         <div className="mt-4 flex items-center gap-2 text-sm">
-                            <TrendingUp className="w-4 h-4 text-green-500" />
-                            <span className="text-green-600 font-medium">{stat.trend}</span>
+                            <TrendingUp className="w-4 h-4 text-orange-500" />
+                            <span className="text-orange-600 font-medium">{stat.trend}</span>
                         </div>
                     </div>
                 ))}
@@ -95,7 +95,7 @@ export function DashboardHome() {
                 <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="text-lg font-bold text-gray-900">Leads Recentes</h3>
-                        <Link to="/dashboard/whatsapp" className="text-sm text-green-600 hover:text-green-800 font-medium flex items-center gap-1">
+                        <Link to="/dashboard/whatsapp" className="text-sm text-orange-600 hover:text-orange-800 font-medium flex items-center gap-1">
                             Ver todos <ArrowRight className="w-4 h-4" />
                         </Link>
                     </div>
@@ -105,13 +105,13 @@ export function DashboardHome() {
                             <p className="text-gray-500 text-center py-8">Nenhum lead recente.</p>
                         ) : (
                             statsData.recentLeads.map((lead: any) => (
-                                <div key={lead.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer group">
+                                <div key={lead.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-orange-50 transition-colors cursor-pointer group border border-transparent hover:border-orange-100">
                                     <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold shrink-0">
+                                        <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold shrink-0">
                                             {(lead.name || lead.phone || 'L').charAt(0).toUpperCase()}
                                         </div>
                                         <div className="overflow-hidden">
-                                            <p className="font-bold text-gray-900 group-hover:text-green-600 transition-colors truncate w-48">
+                                            <p className="font-bold text-gray-900 group-hover:text-orange-600 transition-colors truncate w-48">
                                                 {lead.name || lead.phone}
                                             </p>
                                             <p className="text-sm text-gray-500 truncate w-64">{lead.lastMessage}</p>
@@ -134,10 +134,11 @@ export function DashboardHome() {
                         <div>
                             <div className="flex justify-between text-sm mb-2">
                                 <span className="text-gray-500">Plano Atual</span>
-                                <Link to="/dashboard/plans" className="text-green-600 font-medium text-xs hover:underline">Gerenciar</Link>
+                                { /* Hidden/Camouflaged link */}
+                                {/* <Link to="/dashboard/plans" className="text-orange-600 font-medium text-xs hover:underline">Gerenciar</Link> */}
                             </div>
-                            <div className="p-3 bg-purple-50 text-purple-700 rounded-lg font-bold text-center border border-purple-100">
-                                Visualizar Planos
+                            <div className="p-3 bg-gray-50 text-gray-700 rounded-lg font-bold text-center border border-gray-200 text-sm">
+                                Conta Premium
                             </div>
                         </div>
 
@@ -147,7 +148,7 @@ export function DashboardHome() {
                                 <span className="text-gray-900 font-medium">{statsData.activeProducts} / 50</span>
                             </div>
                             <div className="w-full bg-gray-100 rounded-full h-2">
-                                <div className="bg-green-500 h-2 rounded-full" style={{ width: `${Math.min((statsData.activeProducts / 50) * 100, 100)}%` }}></div>
+                                <div className="bg-orange-500 h-2 rounded-full" style={{ width: `${Math.min((statsData.activeProducts / 50) * 100, 100)}%` }}></div>
                             </div>
                         </div>
 
