@@ -334,7 +334,13 @@ export class WhatsappService implements OnModuleInit, OnModuleDestroy {
 
         // State Machine
         if (currentState === 'MENU') {
-            if (msg === '2' || msg === 'btn_consultor') {
+            if (msg === '1' || msg.includes('site') || msg.includes('comprar')) {
+                const clientUrl = this.configService.get('CLIENT_URL') || 'https://zapilar.online';
+                const userSlug = user?.slug || '';
+                const siteLink = userSlug ? `${clientUrl}/${userSlug}` : clientUrl;
+
+                await this.sendMessage(userId, jid, `🛒 *Acesse nossa Loja Online:*\n\n${siteLink}\n\nLá você encontra todos os produtos com fotos, preços e pode pedir para entregar! 🛵`);
+            } else if (msg === '2' || msg === 'btn_consultor') {
                 // Ensure Brazil Timezone
                 const brazilTime = new Date().toLocaleString("en-US", { timeZone: "America/Sao_Paulo" });
                 const hour = new Date(brazilTime).getHours();
@@ -373,15 +379,18 @@ export class WhatsappService implements OnModuleInit, OnModuleDestroy {
         let to = jid;
         if (!to.includes('@')) to = `${to.replace(/\D/g, '')}@s.whatsapp.net`;
 
+        const clientUrl = this.configService.get('CLIENT_URL') || 'https://zapilar.online';
+        const userSlug = await this.usersService.findById(userId).then(u => u?.slug || '');
+        const siteLink = userSlug ? `${clientUrl}/${userSlug}` : clientUrl;
+
         const menu = `👋 Olá! Bem-vindo(a) à *${storeName}*
 🖥️ _As melhores peças e computadores estão aqui!_
 
-Sou seu assistente virtual. Para começar, você pode:
-🔎 *Digitar o nome do produto* (ex: RTX 4060, Processador, Teclado)
+Sou seu assistente virtual. Para começar, selecione uma opção:
 
-━━━━━━━━━━━━━━━━━━━━
-🔻 *OU SELECIONE UMA OPÇÃO:*
-━━━━━━━━━━━━━━━━━━━━
+1️⃣  *Acessar Site de Vendas* (Entrega/Delivery)
+     _Veja nosso catálogo completo e compre online_
+     🔗 ${siteLink}
 
 2️⃣  *Falar com Consultor*
      _Atendimento humano personalizado_
@@ -389,6 +398,8 @@ Sou seu assistente virtual. Para começar, você pode:
 3️⃣  *Dúvidas Frequentes*
      _Pagamento, entrega, garantia_
 
+━━━━━━━━━━━━━━━━━━━━
+🔎 *Ou digite o nome do produto* que você procura (ex: RTX 4060, Mouse, Teclado)
 ━━━━━━━━━━━━━━━━━━━━
 🕐 _Atendimento 24h_`;
 
