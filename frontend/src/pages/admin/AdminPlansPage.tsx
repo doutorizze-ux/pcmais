@@ -95,7 +95,7 @@ export function AdminPlansPage() {
                 <h1 className="text-2xl font-bold text-gray-900">Gerenciar Planos</h1>
                 <button
                     onClick={() => { setEditingPlan({}); setIsModalOpen(true); }}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
+                    className="bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-orange-700"
                 >
                     <Plus className="w-4 h-4" />
                     Novo Plano
@@ -106,7 +106,7 @@ export function AdminPlansPage() {
                 {plans.map(plan => (
                     <div key={plan.id} className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm relative">
                         <div className="absolute top-4 right-4 flex gap-2">
-                            <button onClick={() => { setEditingPlan(plan); setIsModalOpen(true); }} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
+                            <button onClick={() => { setEditingPlan(plan); setIsModalOpen(true); }} className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg">
                                 <Edit className="w-4 h-4" />
                             </button>
                             <button onClick={() => handleDelete(plan.id)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg">
@@ -126,7 +126,7 @@ export function AdminPlansPage() {
                         <div className="mt-6 space-y-3">
                             {(plan.features || []).map((feature, i) => (
                                 <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                                    <Check className="w-4 h-4 text-green-500" />
+                                    <Check className="w-4 h-4 text-orange-500" />
                                     {feature}
                                 </div>
                             ))}
@@ -199,7 +199,7 @@ export function AdminPlansPage() {
                                         }
                                         onChange={e => {
                                             const isChecked = e.target.checked;
-                                            const featureName = "Site Personalizado (zapicar.com.br/nome-loja)";
+                                            const featureName = "Site Personalizado (staysoft.info/nome-loja)";
                                             let currentFeatures = Array.isArray(editingPlan.features)
                                                 ? [...editingPlan.features]
                                                 : (editingPlan.features ? String(editingPlan.features).split(',').map(s => s.trim()) : []);
@@ -213,7 +213,7 @@ export function AdminPlansPage() {
                                             }
                                             setEditingPlan({ ...editingPlan, features: currentFeatures });
                                         }}
-                                        className="w-4 h-4 text-green-600 rounded border-gray-300 focus:ring-green-500"
+                                        className="w-4 h-4 text-orange-600 rounded border-gray-300 focus:ring-orange-500"
                                     />
                                     <label htmlFor="websiteToggle" className="text-sm font-medium text-gray-700 select-none cursor-pointer">
                                         Incluir Geração de Site Próprio
@@ -233,7 +233,7 @@ export function AdminPlansPage() {
 
                             <div className="flex justify-end gap-3 pt-4">
                                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">Cancelar</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Salvar</button>
+                                <button type="submit" className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700">Salvar</button>
                             </div>
                         </form>
                     </div>

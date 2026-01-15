@@ -18,9 +18,9 @@ const SystemContext = createContext<SystemContextType | undefined>(undefined);
 
 export function SystemProvider({ children }: { children: React.ReactNode }) {
     const [settings, setSettings] = useState<SystemSettings>({
-        siteName: 'Zapicar',
+        siteName: 'StaySoft',
         siteLogo: '/logo-dark.png',
-        primaryColor: '#25D366'
+        primaryColor: '#fb5607'
     });
     const [loading, setLoading] = useState(true);
 

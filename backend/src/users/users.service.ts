@@ -15,7 +15,7 @@ export class UsersService implements OnModuleInit {
     ) { }
 
     generateStaticSite(user: User): string {
-        const apiUrl = this.configService.get('API_URL') || 'https://zapp.fitness/api';
+        const apiUrl = this.configService.get('API_URL') || 'https://api.staysoft.info';
         const fileBaseUrl = apiUrl.replace('/api', '');
         const slug = user.slug || 'loja';
 
@@ -29,7 +29,7 @@ export class UsersService implements OnModuleInit {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root { --primary: ${user.primaryColor || '#25D366'}; }
+        :root { --primary: ${user.primaryColor || '#fb5607'}; }
         body { font-family: 'Inter', sans-serif; }
         .bg-primary { background-color: var(--primary); }
         .text-primary { color: var(--primary); }
@@ -107,7 +107,7 @@ export class UsersService implements OnModuleInit {
             </div>
         </div>
         <div class="max-w-7xl mx-auto border-t border-white/5 mt-16 pt-8 text-center text-gray-600 text-[10px] font-bold uppercase tracking-widest">
-             © <script>document.write(new Date().getFullYear())</script> <span id="copyright-name">${user.storeName}</span>. Tecnologia Zapicar.
+             © <script>document.write(new Date().getFullYear())</script> <span id="copyright-name">${user.storeName}</span>. Tecnologia StaySoft.
         </div>
     </footer>
 
@@ -265,7 +265,7 @@ export class UsersService implements OnModuleInit {
                     \"\${v.description || 'Sem descrição detalhada.'}\"
                 </div>
 
-                <a href=\"https://wa.me/\${phoneOwner}?text=Olá! Segue o interesse no \${v.brand} \${v.name}\" target=\"_blank\" class=\"mt-auto block w-full py-5 bg-[#25D366] text-white rounded-[1.5rem] font-black text-center uppercase tracking-widest shadow-xl shadow-green-500/30 hover:scale-[1.02] transition-all\">Tenho Interesse</a>
+                <a href=\"https://wa.me/\${phoneOwner}?text=Olá! Segue o interesse no \${v.brand} \${v.name}\" target=\"_blank\" class=\"mt-auto block w-full py-5 bg-[#fb5607] text-white rounded-[1.5rem] font-black text-center uppercase tracking-widest shadow-xl shadow-orange-500/30 hover:scale-[1.02] transition-all\">Tenho Interesse</a>
             \`;
 
             modal.classList.remove('hidden');
@@ -298,12 +298,12 @@ export class UsersService implements OnModuleInit {
     }
 
     async seedAdmin(force = false) {
-        const adminEmail = 'admin@zapicar.com.br';
+        const adminEmail = 'admin@staysoft.info';
         const adminUser = await this.usersRepository.findOne({ where: { email: adminEmail } });
 
         if (!adminUser) {
             console.log('Seeding default admin user...');
-            await this.create(adminEmail, 'Asd@080782', 'ZapCar Admin', UserRole.ADMIN);
+            await this.create(adminEmail, 'Asd@080782', 'StaySoft Admin', UserRole.ADMIN);
         } else if (force) {
             console.log('Forcing Admin Password Reset...');
             const salt = await bcrypt.genSalt();

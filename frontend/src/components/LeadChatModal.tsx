@@ -95,13 +95,13 @@ export function LeadChatModal({ lead, isOpen, onClose }: LeadChatModalProps) {
                 {/* Header */}
                 <div className="p-6 bg-white border-b border-gray-100 flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold">
+                        <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold">
                             {lead.name ? lead.name.charAt(0).toUpperCase() : <User />}
                         </div>
                         <div>
                             <h3 className="font-bold text-gray-900">{lead.name || 'Novo Lead'}</h3>
-                            <p className="text-xs text-green-600 font-medium flex items-center gap-1">
-                                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                            <p className="text-xs text-orange-600 font-medium flex items-center gap-1">
+                                <div className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
                                 {lead.phone}
                             </p>
                         </div>
@@ -115,7 +115,7 @@ export function LeadChatModal({ lead, isOpen, onClose }: LeadChatModalProps) {
                 <div className="flex-1 overflow-y-auto p-6 bg-gray-50 space-y-4">
                     {loading && messages.length === 0 ? (
                         <div className="flex flex-col items-center justify-center h-full text-gray-400 gap-2">
-                            <div className="w-8 h-8 border-4 border-gray-200 border-t-green-500 rounded-full animate-spin" />
+                            <div className="w-8 h-8 border-4 border-gray-200 border-t-orange-500 rounded-full animate-spin" />
                             <p className="text-sm">Carregando mensagens...</p>
                         </div>
                     ) : messages.length === 0 ? (
@@ -133,7 +133,7 @@ export function LeadChatModal({ lead, isOpen, onClose }: LeadChatModalProps) {
                             return (
                                 <div key={msg.id} className={`flex flex-col ${isMe ? 'items-end' : 'items-start'}`}>
                                     <div className={`max-w-[85%] p-4 rounded-2xl text-sm ${isMe
-                                        ? 'bg-green-600 text-white rounded-tr-none'
+                                        ? 'bg-orange-600 text-white rounded-tr-none'
                                         : isBot
                                             ? 'bg-white border border-blue-100 text-gray-800 rounded-tl-none shadow-sm'
                                             : 'bg-white border border-gray-200 text-gray-800 rounded-tl-none shadow-sm'
@@ -159,18 +159,18 @@ export function LeadChatModal({ lead, isOpen, onClose }: LeadChatModalProps) {
                             value={newMessage}
                             onChange={(e) => setNewMessage(e.target.value)}
                             placeholder="Digite sua resposta..."
-                            className="flex-1 bg-gray-100 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-green-500/20 outline-none"
+                            className="flex-1 bg-gray-100 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-orange-500/20 outline-none"
                         />
                         <button
                             type="submit"
                             disabled={sending || !newMessage.trim()}
-                            className="w-12 h-12 bg-green-600 text-white rounded-2xl flex items-center justify-center hover:bg-green-700 transition-all shadow-lg shadow-green-600/20 active:scale-90 disabled:opacity-50 disabled:active:scale-100"
+                            className="w-12 h-12 bg-orange-600 text-white rounded-2xl flex items-center justify-center hover:bg-orange-700 transition-all shadow-lg shadow-orange-600/20 active:scale-90 disabled:opacity-50 disabled:active:scale-100"
                         >
                             <Send className="w-5 h-5 translate-x-0.5 -translate-y-0.5" />
                         </button>
                     </div>
                     <p className="text-[10px] text-gray-400 mt-2 text-center uppercase font-black tracking-widest">
-                        Envia via WhatsApp Zapicar
+                        Envia via WhatsApp StaySoft
                     </p>
                 </form>
             </div>

@@ -6,7 +6,7 @@ export class SystemSettings {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ default: 'Zapicar' })
+    @Column({ default: 'StaySoft' })
     siteName: string;
 
     @Column({ nullable: true })

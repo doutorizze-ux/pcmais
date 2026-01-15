@@ -86,7 +86,7 @@ export function AdminSystemPage() {
                 {/* Branding Section */}
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-6">
                     <div className="flex items-center gap-2 text-lg font-bold text-gray-900 border-b pb-4">
-                        <Type className="w-5 h-5 text-blue-600" />
+                        <Type className="w-5 h-5 text-orange-600" />
                         Identidade Visual
                     </div>
 
@@ -97,8 +97,8 @@ export function AdminSystemPage() {
                                 type="text"
                                 value={formData.siteName}
                                 onChange={e => setFormData({ ...formData, siteName: e.target.value })}
-                                className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"
-                                placeholder="Ex: Zapicar"
+                                className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500/20 outline-none transition-all"
+                                placeholder="Ex: StaySoft"
                             />
                         </div>
 
@@ -123,7 +123,7 @@ export function AdminSystemPage() {
                         <button
                             onClick={handleSave}
                             disabled={loading}
-                            className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 transition-all disabled:opacity-50"
+                            className="w-full py-3 bg-orange-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-orange-700 transition-all disabled:opacity-50"
                         >
                             <Save className="w-5 h-5" />
                             {loading ? 'Salvando...' : 'Salvar Alterações'}
@@ -134,7 +134,7 @@ export function AdminSystemPage() {
                 {/* Logo Section */}
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-6">
                     <div className="flex items-center gap-2 text-lg font-bold text-gray-900 border-b pb-4">
-                        <Globe className="w-5 h-5 text-green-600" />
+                        <Globe className="w-5 h-5 text-orange-600" />
                         Logo do Sistema
                     </div>
 
@@ -154,7 +154,7 @@ export function AdminSystemPage() {
                         <label className="cursor-pointer group">
                             <input type="file" className="hidden" onChange={handleLogoUpload} accept="image/*" />
                             <div className="px-6 py-3 bg-white border border-gray-200 rounded-xl font-bold text-gray-700 flex items-center gap-2 group-hover:bg-gray-50 transition-all shadow-sm">
-                                <Upload className="w-5 h-5 text-blue-600" />
+                                <Upload className="w-5 h-5 text-orange-600" />
                                 {uploading ? 'Enviando...' : 'Fazer Upload da Logo'}
                             </div>
                         </label>

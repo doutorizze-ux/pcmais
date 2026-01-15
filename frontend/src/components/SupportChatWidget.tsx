@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 const VISITOR_FAQ = [
     {
         id: 'whatis',
-        title: '🤔 O que é o Zapicar?',
-        keywords: ['zapicar', 'que é', 'funciona', 'sistema', 'plataforma'],
-        answer: 'O Zapicar é uma plataforma que transforma seu WhatsApp em uma máquina de vendas automática. Ele conecta seu estoque de veículos ao WhatsApp e responde clientes 24h por dia com fotos e preços.'
+        title: '🤔 O que é o StaySoft?',
+        keywords: ['staysoft', 'que é', 'funciona', 'sistema', 'plataforma'],
+        answer: 'O StaySoft é uma plataforma que transforma seu WhatsApp em uma máquina de vendas automática. Ele conecta seu estoque de veículos ao WhatsApp e responde clientes 24h por dia com fotos e preços.'
     },
     {
         id: 'pricing',
@@ -130,8 +130,8 @@ export function SupportChatWidget() {
     useEffect(() => {
         if (isOpen && messages.length === 0) {
             const greeting = isAuthenticated
-                ? 'Olá! Sou o Suporte Técnico do Zapicar. Como posso te ajudar com sua conta hoje?'
-                : 'Olá! Bem-vindo ao Zapicar. Sou seu assistente de vendas. Como posso ajudar você a conhecer nossa plataforma?';
+                ? 'Olá! Sou o Suporte Técnico do StaySoft. Como posso te ajudar com sua conta hoje?'
+                : 'Olá! Bem-vindo ao StaySoft. Sou seu assistente de vendas. Como posso ajudar você a conhecer nossa plataforma?';
 
             setMessages([
                 {
@@ -221,7 +221,7 @@ export function SupportChatWidget() {
                                 </div>
                                 <div>
                                     <h3 className="text-white font-bold text-sm">
-                                        {isAuthenticated ? 'Suporte Técnico' : 'Vendas Zapicar'}
+                                        {isAuthenticated ? 'Suporte Técnico' : 'Vendas StaySoft'}
                                     </h3>
                                     <p className="text-xs text-orange-400 font-medium">Online Agora</p>
                                 </div>

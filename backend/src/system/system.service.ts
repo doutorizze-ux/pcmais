@@ -16,9 +16,9 @@ export class SystemService implements OnModuleInit {
         if (!settings) {
             await this.settingsRepository.save({
                 id: 1,
-                siteName: 'Zapicar',
+                siteName: 'StaySoft',
                 siteLogo: '/uploads/system-logo-default.png',
-                primaryColor: '#25D366'
+                primaryColor: '#FB5607'
             });
         }
     }

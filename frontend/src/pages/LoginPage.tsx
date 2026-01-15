@@ -58,7 +58,7 @@ export function LoginPage() {
                         <div className="bg-orange-500/20 p-2 rounded-xl border border-orange-500/20 backdrop-blur-sm">
                             <Monitor className="w-8 h-8 text-orange-500" />
                         </div>
-                        <span className="text-2xl font-bold tracking-tight text-white">Zapicar<span className="text-orange-500">.Info</span></span>
+                        <span className="text-2xl font-bold tracking-tight text-white">StaySoft<span className="text-orange-500">.Info</span></span>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@ export function LoginPage() {
 
                 <div className="relative z-10 flex items-center gap-2 text-sm text-gray-600 font-medium">
                     <Cpu className="w-4 h-4 text-orange-900" />
-                    © {new Date().getFullYear()} Zapicar Tecnologia.
+                    © {new Date().getFullYear()} StaySoft Tecnologia.
                 </div>
             </div>
 
@@ -87,7 +87,7 @@ export function LoginPage() {
                             <div className="bg-orange-500/20 p-2 rounded-xl border border-orange-500/20">
                                 <Monitor className="w-8 h-8 text-orange-500" />
                             </div>
-                            <span className="text-2xl font-bold text-white">Zapicar</span>
+                            <span className="text-2xl font-bold text-white">StaySoft</span>
                         </div>
 
                         <h2 className="text-3xl font-bold text-white tracking-tight">Bem-vindo(a)</h2>
