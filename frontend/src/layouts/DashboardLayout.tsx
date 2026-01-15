@@ -2,7 +2,6 @@ import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Settings, LogOut, Smartphone, BookOpen, Menu, X, Users, Contact, DollarSign, Monitor, Wrench, Loader2 } from 'lucide-react';
 import { cn } from '../utils';
 import { useState, useEffect } from 'react';
-import { SupportChatWidget } from '../components/SupportChatWidget';
 import { useSystem } from '../contexts/SystemContext';
 import { API_URL } from '../config';
 
@@ -242,7 +241,6 @@ export function DashboardLayout() {
                 <Outlet />
             </main>
 
-            <SupportChatWidget />
         </div>
     );
 }
