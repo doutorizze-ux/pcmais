@@ -101,14 +101,14 @@ export function ProductsPage() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                     <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-                        <Monitor className="w-8 h-8 text-blue-600" />
+                        <Monitor className="w-8 h-8 text-orange-600" />
                         Produtos
                     </h2>
                     <p className="text-gray-500 mt-1">Gerencie seu catálogo de peças e computadores.</p>
                 </div>
                 <button
                     onClick={handleNewProduct}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-colors shadow-lg shadow-blue-600/20"
+                    className="flex items-center gap-2 px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-medium transition-colors shadow-lg shadow-orange-600/20"
                 >
                     <Plus className="w-5 h-5" />
                     Novo Produto
@@ -121,7 +121,7 @@ export function ProductsPage() {
                     <input
                         type="text"
                         placeholder="Buscar por nome, marca ou modelo (ex: RTX, Asus)..."
-                        className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
                     />
                 </div>
                 <button className="flex items-center gap-2 px-4 py-3 bg-white border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 font-medium transition-colors">
@@ -157,7 +157,7 @@ export function ProductsPage() {
                             </div>
                             <div className="p-5 flex-1 flex flex-col">
                                 <div className="mb-2">
-                                    <span className="text-xs font-bold text-blue-600 uppercase tracking-wide bg-blue-50 px-2 py-0.5 rounded-full">{product.brand}</span>
+                                    <span className="text-xs font-bold text-orange-600 uppercase tracking-wide bg-orange-50 px-2 py-0.5 rounded-full">{product.brand}</span>
                                     <h3 className="text-lg font-bold text-gray-900 mt-2 leading-tight">{product.name}</h3>
                                     <p className="text-gray-500 text-sm mt-1">{product.model} • {product.category}</p>
                                 </div>
