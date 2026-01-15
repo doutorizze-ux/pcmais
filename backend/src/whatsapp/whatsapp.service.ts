@@ -455,7 +455,7 @@ Sou seu assistente virtual. Para começar, selecione uma opção:
                 await this.leadsService.setInterest(userId, jid, `${products[0].brand} ${products[0].name}`);
             } catch (e) { }
 
-            const clientUrl = this.configService.get('CLIENT_URL') || 'https://zapilar.online';
+            const clientUrl = this.configService.get('CLIENT_URL') || 'https://staysoft.info';
 
             for (const product of products) {
                 // Send ONLY the first image to avoid flooding
@@ -466,7 +466,43 @@ Sou seu assistente virtual. Para começar, selecione uma opção:
 
                 // Send Details + Deep Link
                 const price = Number(product.price || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
-                const productLink = user?.slug ? `${clientUrl}/${user.slug}?p=${product.id}` : null;
+
+                // Logic for constructing product link:
+                // 1. If user has customSalesUrl, use it as base. But product ID params might be specific to our platform logic.
+                //    Assuming custom URL is just a redirect or similar, we might need a standard way. 
+                //    However, user complained about WRONG link. The link shown in user prompt: https://zapilar.online/pcmais?p=19e6f5ad...
+                //    It seems it should be staysoft.info now? Or simply the internal structure?
+                //    But the MAIN issue might be the domain.
+                //    Let's use the same logic as Main Menu: user.customSalesUrl OR constructed.
+
+                const storeBaseUrl = user?.customSalesUrl || (user?.slug ? `${clientUrl}/${user.slug}` : clientUrl);
+
+                // If the user has a custom external URL, we might not be able to append ?p=ID properly unless we know how they handle it.
+                // IF it IS our system (slug based), then ?p=ID works.
+                // IF it is an external link, maybe just send the link?
+                // For now, let's assume if customSalesUrl is present, we blindly append the query param or maybe just send the home if we can't deep-link.
+                // BUT better safe assumption: If custom URL is set, they might want traffic THERE. 
+                // Let's look at the clientUrl: if it defaulted to zapilar, we must fix that too.
+
+                let productLink = '';
+                if (user?.slug && !user?.customSalesUrl) {
+                    // Standard Internal Store
+                    productLink = `${clientUrl}/${user.slug}?p=${product.id}`;
+                } else if (user?.customSalesUrl) {
+                    // External / Custom
+                    // Try to be smart? Or just link to store?
+                    // Usually external stores have their own structure. 
+                    // Let's just link to the main store link provided, maybe with a search query if possible?
+                    // Or just the main link as requested "queria que a propria loja editaçe este link para enviar".
+                    // If they want to send a specific product link, they'd need a specific format.
+                    // SAFEST: Send the General Store Link + "Fale com atendente para fechar".
+                    // OR just append /product/ID if they follow our structure?
+                    // Let's just key off the behavior: The user wants the link they configured.
+                    // We will provide the link they configured. We can't deep link to an arbitrary external site easily.
+                    // But maybe we can append ?search=PRODUCTNAME?
+                    // For now, let's stick to the BASE custom URL if set.
+                    productLink = user.customSalesUrl;
+                }
 
                 let specs = `🖥️ *${product.brand} ${product.name}*
 📝 *Modelo:* ${product.model || '-'}
