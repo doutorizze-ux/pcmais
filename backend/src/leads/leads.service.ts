@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Lead } from './entities/lead.entity';
-import { VehiclesService } from '../vehicles/vehicles.service';
+import { ProductsService } from '../products/products.service';
 
 @Injectable()
 export class LeadsService {
     constructor(
         @InjectRepository(Lead)
         private leadsRepository: Repository<Lead>,
-        private vehiclesService: VehiclesService,
+        private productsService: ProductsService,
     ) { }
 
     async create(storeId: string, dto: any) {
@@ -55,32 +55,32 @@ export class LeadsService {
 
     async getCRMStats(storeId: string) {
         const leads = await this.leadsRepository.find({ where: { storeId } });
-        const vehicles = await this.vehiclesService.findAll(storeId);
+        const products = await this.productsService.findAll(storeId);
 
         const wonLeads = leads.filter(l => l.status === 'WON');
         const conversionRate = leads.length > 0 ? (wonLeads.length / leads.length) * 100 : 0;
 
-        // Calcular volume financeiro (Soma dos preços dos carros nos leads ativos)
+        // Calcular volume financeiro (Soma dos preços dos produtos nos leads ativos)
         const openLeads = leads.filter(l => ['NEW', 'IN_PROGRESS', 'WAITING_FINANCIAL'].includes(l.status));
         let openValue = 0;
 
         openLeads.forEach(lead => {
             if (lead.interestSubject) {
-                const vehicle = vehicles.find(v =>
-                    lead.interestSubject.toLowerCase().includes(v.name.toLowerCase()) ||
-                    lead.interestSubject.toLowerCase().includes(v.model.toLowerCase())
+                const product = products.find(p =>
+                    lead.interestSubject.toLowerCase().includes(p.name.toLowerCase()) ||
+                    lead.interestSubject.toLowerCase().includes(p.model.toLowerCase())
                 );
-                if (vehicle) openValue += Number(vehicle.price);
+                if (product) openValue += Number(product.price);
             }
         });
 
         const wonValue = wonLeads.reduce((acc, lead) => {
             if (lead.interestSubject) {
-                const vehicle = vehicles.find(v =>
-                    lead.interestSubject.toLowerCase().includes(v.name.toLowerCase()) ||
-                    lead.interestSubject.toLowerCase().includes(v.model.toLowerCase())
+                const product = products.find(p =>
+                    lead.interestSubject.toLowerCase().includes(p.name.toLowerCase()) ||
+                    lead.interestSubject.toLowerCase().includes(p.model.toLowerCase())
                 );
-                if (vehicle) return acc + Number(vehicle.price);
+                if (product) return acc + Number(product.price);
             }
             return acc;
         }, 0);

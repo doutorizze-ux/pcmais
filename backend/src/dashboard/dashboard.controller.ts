@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards, Request } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { LeadsService } from '../leads/leads.service';
-import { VehiclesService } from '../vehicles/vehicles.service';
+import { ProductsService } from '../products/products.service';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { UserRole } from '../users/entities/user.entity';
@@ -12,7 +12,7 @@ import { PlansService } from '../plans/plans.service';
 export class DashboardController {
     constructor(
         private leadsService: LeadsService,
-        private vehiclesService: VehiclesService,
+        private productsService: ProductsService,
         private usersService: UsersService,
         private plansService: PlansService
     ) { }
@@ -21,10 +21,10 @@ export class DashboardController {
     @Get('stats')
     async getStats(@Request() req) {
         const leadsStats = await this.leadsService.getStats(req.user.userId);
-        const vehicles = await this.vehiclesService.findAll(req.user.userId);
+        const products = await this.productsService.findAll(req.user.userId);
 
         return {
-            activeVehicles: vehicles.length,
+            activeProducts: products.length,
             leads: leadsStats.totalLeads,
             recentLeads: leadsStats.recentLeads,
             // Mock interaction count (e.g. leads * 5) or use another table later
@@ -56,9 +56,9 @@ export class DashboardController {
             }
         });
 
-        // 4. Total Vehicles
-        const allVehicles = await this.vehiclesService.findAll();
-        const totalVehicles = allVehicles.length;
+        // 4. Total Products
+        const allProducts = await this.productsService.findAll();
+        const totalProducts = allProducts.length;
 
         // 5. Recent Users (Last 5)
         // Assuming users are returned by ID or created order, simpler to just sort in JS if small app
@@ -71,7 +71,7 @@ export class DashboardController {
             totalUsers,
             activePlansCount,
             monthlyRevenue,
-            totalVehicles,
+            totalProducts,
             recentUsers
         };
     }
