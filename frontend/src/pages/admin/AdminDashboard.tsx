@@ -1,5 +1,5 @@
 
-import { Users, DollarSign, Package, Car, TrendingUp, ArrowRight, Shield, CreditCard } from 'lucide-react';
+import { Users, DollarSign, Package, Monitor, TrendingUp, ArrowRight, Shield, CreditCard } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../../config';
@@ -8,7 +8,7 @@ interface AdminStats {
     totalUsers: number;
     activePlansCount: number;
     monthlyRevenue: number;
-    totalVehicles: number;
+    totalProducts: number;
     recentUsers: any[];
 }
 
@@ -17,7 +17,7 @@ export function AdminDashboard() {
         totalUsers: 0,
         activePlansCount: 0,
         monthlyRevenue: 0,
-        totalVehicles: 0,
+        totalProducts: 0,
         recentUsers: []
     });
 
@@ -57,9 +57,9 @@ export function AdminDashboard() {
             trend: 'Faturamento estimado'
         },
         {
-            label: 'Veículos na Base',
-            value: stats.totalVehicles,
-            icon: Car,
+            label: 'Produtos na Base',
+            value: stats.totalProducts,
+            icon: Monitor,
             color: 'text-purple-600',
             bg: 'bg-purple-50',
             trend: 'Em todas as lojas'

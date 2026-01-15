@@ -1,11 +1,11 @@
 
-import { Car, MessageSquare, Users, MousePointerClick, Plus, ArrowRight, TrendingUp, Zap } from 'lucide-react';
+import { Monitor, MessageSquare, Users, MousePointerClick, Plus, ArrowRight, TrendingUp, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { API_URL } from '../config';
 
 interface DashboardStats {
-    activeVehicles: number;
+    activeProducts: number;
     leads: number;
     interactions: number;
     recentLeads: any[];
@@ -13,7 +13,7 @@ interface DashboardStats {
 
 export function DashboardHome() {
     const [statsData, setStatsData] = useState<DashboardStats>({
-        activeVehicles: 0,
+        activeProducts: 0,
         leads: 0,
         interactions: 0,
         recentLeads: []
@@ -38,7 +38,7 @@ export function DashboardHome() {
     }, []);
 
     const stats = [
-        { label: 'Veículos Ativos', value: statsData.activeVehicles, icon: Car, color: 'text-green-600', bg: 'bg-green-50', trend: 'Atualizado agora' },
+        { label: 'Produtos Ativos', value: statsData.activeProducts, icon: Monitor, color: 'text-green-600', bg: 'bg-green-50', trend: 'Atualizado agora' },
         { label: 'Interações', value: statsData.interactions, icon: MessageSquare, color: 'text-green-600', bg: 'bg-green-50', trend: 'Total estimado' },
         { label: 'Leads Totais', value: statsData.leads, icon: Users, color: 'text-purple-600', bg: 'bg-purple-50', trend: 'Contatos únicos' },
         { label: 'Cliques no Bot', value: statsData.interactions, icon: MousePointerClick, color: 'text-orange-600', bg: 'bg-orange-50', trend: '+8%' },
@@ -54,8 +54,8 @@ export function DashboardHome() {
                         Aqui está o que está acontecendo na sua loja hoje. Verifique seus leads recentes e gerencie seu estoque.
                     </p>
                     <div className="mt-6 flex gap-4">
-                        <Link to="/dashboard/vehicles" className="bg-white text-gray-900 px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition flex items-center gap-2">
-                            <Plus className="w-4 h-4" /> Novo Veículo
+                        <Link to="/dashboard/products" className="bg-white text-gray-900 px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition flex items-center gap-2">
+                            <Plus className="w-4 h-4" /> Novo Produto
                         </Link>
                         <Link to="/dashboard/leads" className="bg-white/10 text-white px-4 py-2 rounded-lg font-bold hover:bg-white/20 transition backdrop-blur-sm">
                             Ver Mensagens
@@ -143,11 +143,11 @@ export function DashboardHome() {
 
                         <div>
                             <div className="flex justify-between text-sm mb-2">
-                                <span className="text-gray-500">Limite de Veículos</span>
-                                <span className="text-gray-900 font-medium">{statsData.activeVehicles} / 50</span>
+                                <span className="text-gray-500">Limite de Produtos</span>
+                                <span className="text-gray-900 font-medium">{statsData.activeProducts} / 50</span>
                             </div>
                             <div className="w-full bg-gray-100 rounded-full h-2">
-                                <div className="bg-green-500 h-2 rounded-full" style={{ width: `${Math.min((statsData.activeVehicles / 50) * 100, 100)}%` }}></div>
+                                <div className="bg-green-500 h-2 rounded-full" style={{ width: `${Math.min((statsData.activeProducts / 50) * 100, 100)}%` }}></div>
                             </div>
                         </div>
 

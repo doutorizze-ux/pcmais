@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Calculator, DollarSign, Calendar, Percent, RefreshCw, Car } from 'lucide-react';
+import { Calculator, DollarSign, Calendar, Percent, RefreshCw, Monitor } from 'lucide-react';
 
 export function SimulatorPage() {
-    const [vehiclePrice, setVehiclePrice] = useState<string>('');
+    const [productPrice, setProductPrice] = useState<string>('');
     const [downPayment, setDownPayment] = useState<string>('');
     const [interestRate, setInterestRate] = useState<string>('1.99');
     const [months, setMonths] = useState<number>(48);
@@ -14,7 +14,7 @@ export function SimulatorPage() {
     } | null>(null);
 
     const calculateFinancing = () => {
-        const price = parseFloat(vehiclePrice.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
+        const price = parseFloat(productPrice.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
         const entry = parseFloat(downPayment.replace(/[^\d,]/g, '').replace(',', '.')) || 0;
         const rate = parseFloat(interestRate.replace(',', '.')) / 100;
 
@@ -51,8 +51,8 @@ export function SimulatorPage() {
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        if (value === '') setVehiclePrice('');
-        else setVehiclePrice(formatCurrency(value));
+        if (value === '') setProductPrice('');
+        else setProductPrice(formatCurrency(value));
     };
 
     const handleDownPaymentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,12 +62,12 @@ export function SimulatorPage() {
     };
 
     useEffect(() => {
-        if (vehiclePrice) {
+        if (productPrice) {
             calculateFinancing();
         } else {
             setResult(null);
         }
-    }, [vehiclePrice, downPayment, interestRate, months]);
+    }, [productPrice, downPayment, interestRate, months]);
 
     return (
         <div className="space-y-6 animate-fade-in-up">
@@ -87,15 +87,15 @@ export function SimulatorPage() {
                     <div className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                                Valor do Veículo
+                                Valor do Produto
                             </label>
                             <div className="relative">
                                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                                    <Car className="w-4 h-4" />
+                                    <Monitor className="w-4 h-4" />
                                 </span>
                                 <input
                                     type="text"
-                                    value={vehiclePrice}
+                                    value={productPrice}
                                     onChange={handlePriceChange}
                                     placeholder="R$ 0,00"
                                     className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-all font-medium text-gray-900"
@@ -162,7 +162,7 @@ export function SimulatorPage() {
 
                         <button
                             onClick={() => {
-                                setVehiclePrice('');
+                                setProductPrice('');
                                 setDownPayment('');
                                 setInterestRate('1.99');
                                 setMonths(48);
@@ -212,8 +212,8 @@ export function SimulatorPage() {
                                 <h3 className="font-semibold text-gray-900 mb-4">Detalhamento da Simulação</h3>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                     <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
-                                        <p className="text-sm text-gray-500 mb-1">Valor do Veículo</p>
-                                        <p className="font-semibold text-gray-900">{vehiclePrice}</p>
+                                        <p className="text-sm text-gray-500 mb-1">Valor do Produto</p>
+                                        <p className="font-semibold text-gray-900">{productPrice}</p>
                                     </div>
                                     <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
                                         <p className="text-sm text-gray-500 mb-1">Entrada</p>
@@ -239,7 +239,7 @@ export function SimulatorPage() {
                             </div>
                             <h3 className="text-lg font-semibold text-gray-900 mb-2">Realize uma Simulação</h3>
                             <p className="text-gray-500 max-w-sm">
-                                Preencha os dados do veículo e do financiamento ao lado para ver o resultado detalhado.
+                                Preencha os dados do produto e do financiamento ao lado para ver o resultado detalhado.
                             </p>
                         </div>
                     )}
