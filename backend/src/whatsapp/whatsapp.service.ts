@@ -344,7 +344,7 @@ export class WhatsappService implements OnModuleInit, OnModuleDestroy {
                 if (isBusinessHours) {
                     await this.sendMessage(userId, jid, "Certo 👍. Um atendente foi notificado e pode te responder em até 3 minutos.\n\nCaso queira retornar para o menu, digite *Menu* ou *Voltar*.");
                 } else {
-                    await this.sendMessage(userId, jid, "Nosso atendimento humano funciona das *07:00 às 18:00*. 🕒\n\nComo estamos fora do expediente, você pode deixar sua mensagem agora que responderemos assim que retornarmos.\n\nOu digite *Menu* para continuar vendo carros com nosso sistema automático 24h! 🤖");
+                    await this.sendMessage(userId, jid, "Nosso atendimento humano funciona das *07:00 às 18:00*. 🕒\n\nComo estamos fora do expediente, você pode deixar sua mensagem agora que responderemos assim que retornarmos.\n\nOu digite *Menu* para continuar vendo produtos com nosso sistema automático 24h! 🤖");
                 }
 
                 this.userStates.set(stateKey, { mode: 'HANDOVER' });
