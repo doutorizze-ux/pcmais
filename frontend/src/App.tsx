@@ -4,8 +4,8 @@ import { DashboardHome } from './pages/DashboardHome';
 import { ProductsPage } from './pages/ProductsPage';
 import { LoginPage } from './pages/LoginPage';
 import { WhatsappPage } from './pages/WhatsappPage';
-import { LandingPage } from './pages/LandingPage';
-import { RegisterPage } from './pages/RegisterPage';
+// import { LandingPage } from './pages/LandingPage'; // Removed
+// import { RegisterPage } from './pages/RegisterPage'; // Removed
 import { SettingsPage } from './pages/SettingsPage';
 import { AuthProvider } from './contexts/AuthContext';
 import { AdminLayout } from './layouts/AdminLayout';
@@ -41,8 +41,8 @@ function App() {
       <SystemProvider>
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/" element={<LoginPage />} />
+            {/* <Route path="/register" element={<RegisterPage />} /> */}
 
             <Route path="/login" element={<LoginPage />} />
 
