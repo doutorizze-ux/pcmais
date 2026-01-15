@@ -1,0 +1,34 @@
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+
+@Entity()
+export class Lead {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @Column()
+    storeId: string; // The user (store owner) ID
+
+    @Column()
+    phone: string;
+
+    @Column({ nullable: true })
+    name: string;
+
+    @Column('text')
+    lastMessage: string;
+
+    @Column({ default: false })
+    isHot: boolean;
+
+    @Column({ nullable: true })
+    interestSubject: string;
+
+    @Column({ default: 'NEW' })
+    status: string; // 'NEW', 'IN_PROGRESS', 'WAITING_FINANCIAL', 'WON', 'LOST'
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
+}
